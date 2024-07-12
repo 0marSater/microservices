@@ -17,13 +17,16 @@ pipeline {
 
                     changedFiles.each { file ->
                         if (file.startsWith('omarService/')) {
+                            echo "service omarService modified"
                             servicesToBuild << 'omarService'
                         } else if (file.startsWith('saterService/')) {
                             servicesToBuild << 'saterService'
+                            echo "service saterService modified"
                         }
                     }
 
                     servicesToBuild = servicesToBuild.unique()
+                    echo "Services to build: ${servicesToBuild.join(', ')}"
                     env.SERVICES_TO_BUILD = servicesToBuild.join(',')
                 }
             }
