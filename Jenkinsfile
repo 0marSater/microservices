@@ -40,9 +40,11 @@ pipeline {
                 script {
                     def services = env.SERVICES_TO_BUILD.split(',')
                     services.each { service ->
+                        def lowercaseService = service.toLowerCase()
+                        echo "${lowercaseService}"
                         sh """
                             cd ${service}
-                            docker build -t ${env.ECR_REGISTRY}/${service}:${commitHash} .
+                            docker build -t ${env.ECR_REGISTRY}/${lowercaseService}:${commitHash} .
                             cd ..
                         """
                     }
