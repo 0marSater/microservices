@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     environment {
-//         ECR_REGISTRY = "your_ecr_registry"
+        ECR_REGISTRY = "test"
         commitHash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
     }
 
